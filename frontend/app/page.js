@@ -57,7 +57,7 @@ const page = () => {
       <Faq />
       <Cta />
       <Footer />
-      <PopupWidget />
+      <PopupWidget />   
     </>
   );
 }

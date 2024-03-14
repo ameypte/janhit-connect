@@ -27,7 +27,7 @@ const Navbar = () => {
                     <span>
                      
                     </span>
-                    <span>JanhitConnect</span>
+                    <span>जनहितConnect</span>
                   </span>
                 </Link>
 
