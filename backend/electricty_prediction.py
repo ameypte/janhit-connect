@@ -3,14 +3,14 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 
 # Load numerical data into a DataFrame
-data = pd.read_csv('dataset_water.csv')
+data = pd.read_csv('data.csv')
 
 # Select only specific columns as features
-selected_features = ['People in Ward', 'Season', 'Construction']  # List of column names you want to include
+selected_features = ['People in Ward', 'Festive Season', 'Construction']  # List of column names you want to include
 X = data[selected_features]
 
 # Select the target variable
-y = data['Water Usage']
+y = data['Electricity Usage']
 
 # Initialize and train Random Forest model using 100% of the data
 rf_regressor = RandomForestRegressor(n_estimators=100, random_state=42)
