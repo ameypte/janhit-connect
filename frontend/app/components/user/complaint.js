@@ -8,7 +8,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 // import { Description } from "@headlessui/react/dist/components/description/description";
 
-const Complaint = ({ title, description, raisedBy, ministry }) => {
+const Complaint = ({
+  title,
+  description,
+  raisedBy,
+  ministry,
+  date,
+  status,
+}) => {
   const router = useRouter();
   const [username, setUsername] = useState();
 
@@ -27,14 +34,14 @@ const Complaint = ({ title, description, raisedBy, ministry }) => {
   return (
     <div class="p-10">
       <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
+        <ul class="flex flex-wrap text  -sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
           <li class="me-2">
             <p
               id="about-tab"
               aria-selected="true"
               class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500 font-extrabold"
             >
-              Date:27/03/2024
+              {date}
             </p>
           </li>
 
@@ -51,7 +58,7 @@ const Complaint = ({ title, description, raisedBy, ministry }) => {
               id="statistics-tab"
               class="inline-block p-4 text-red-500 rounded-ss-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500 b-3 font-extrabold"
             >
-              Status:Pending
+              Status : {status}
             </p>
           </li>
         </ul>

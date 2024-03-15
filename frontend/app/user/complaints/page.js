@@ -56,6 +56,8 @@ export default function page() {
               description={complaint.complaint}
               raisedBy={complaint.raisedby}
               ministry={complaint.category}
+              status={complaint.status}
+              date={complaint.date}
             />
           ))
         : null}
