@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import Container from "./container";
@@ -33,26 +33,26 @@ const Faq = () => {
       </div>
     </Container>
   );
-}
+};
 
 const faqdata = [
   {
-    question: "what  is the ",
-    answer: "Yes, this template is completely free to use.",
+    question: "What is the procedure to file a complaint?",
+    answer: "Create a account and then in the complaint section add complaint.",
   },
   {
-    question: "Can I use it in a commercial project?",
-    answer: "Yes, this you can.",
+    question: "Is this a authentic government platform?",
+    answer: "Yes, this ia an official platform by government of india .",
   },
   {
-    question: "What is your refund policy? ",
+    question: "How will the water timmings and electricity cutoffs conveyed? ",
     answer:
-      "If you're unhappy with your purchase for any reason, email us within 90 days and we'll refund you in full, no questions asked.",
+      "The water timmings and electricity cutoffs will be conveyed through the app and also through  SMS onregistered mobile number.",
   },
   {
-    question: "Do you offer technical support? ",
+    question: "The complaints will be conveyed to Nagarsevak, right? ",
     answer:
-      "No, we don't offer technical support for free downloads. Please purchase a support plan to get 6 months of support.",
+      "Yes, the complaints will be conveyed to Nagarsevak and also to the concerned department.",
   },
 ];
 

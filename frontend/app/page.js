@@ -26,10 +26,11 @@ const page = () => {
 
       <Navbar />
       <Hero />
-      <SectionTitle
-        pretitle="Benefits"
-        title=" Why should you use जनहित Connect">
-        Choose JanhitConnect for effortless solutions to all your problems, making community issues a thing of the past. With a user-centric approach, we simplify life for everyone, ensuring a brighter tomorrow for all.
+      <SectionTitle title=" Why should you use जनहित Connect">
+        Choose JanhitConnect for effortless solutions to all your problems,
+        making community issues a thing of the past. With a user-centric
+        approach, we simplify life for everyone, ensuring a brighter tomorrow
+        for all.
       </SectionTitle>
       <Benefits data={benefitOne} />
       <SectionTitle
@@ -45,10 +46,11 @@ const page = () => {
         Use this section to highlight your popular customers.
       </SectionTitle>
       <Testimonials />
+      */}
       <SectionTitle pretitle="FAQ" title="Frequently Asked Questions">
         Answer your customers possible questions here, it will increase the
         conversion rate as well as support or chat requests.
-      </SectionTitle> */}
+      </SectionTitle>
       <Faq />
       {/* <Cta /> */}
       <Footer />
