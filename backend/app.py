@@ -11,8 +11,9 @@ from flask_cors import CORS
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-
 from complaintClassify import ClassifyComplaint
+
+
 app = Flask(__name__) 
 CORS(app)
 genai_api_key = "AIzaSyC897bCsmDp-Yc9fCrZtuj_0Pux_YMop6o"
@@ -84,5 +85,8 @@ def classify():
 
     return jsonify({"ministry": classification_result['ministry'].content})
     # ClassifyComplaint(title1=title,description1=description)
+
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
