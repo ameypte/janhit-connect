@@ -39,14 +39,15 @@ export default function Login() {
       }
       console.log(data + "This is My Datas");
       const userId = data.user[0].fullname;
+      const id = data.user[0].id;
+
       console.log(userId);
       localStorage.setItem("name", userId);
-
+      localStorage.setItem("id", id);
+      localStorage.setItem("username", username);
+      localStorage.setItem("password", password);
       router.push("/user");
     }
-
-    localStorage.setItem("username", username);
-    localStorage.setItem("password", password);
   }
   return (
     <section className="bg-gray-50 dark:bg-gray-900">

@@ -1,24 +1,48 @@
 "use client";
+// Import necessary modules
 import React, { useState } from "react";
 import NavBar from "../../components/navbar";
 
-export default function page() {
-  const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
-  const [category, setWard] = useState("");
-  const [photo, setPhoto] = useState(null);
 
-  const handleSubmit = () => {
-    // Logic to submit the complaint
-    console.log("Complaint submitted:", {
-      description,
-      location,
-      category,
-      photo,
-    });
-    // Add logic to send complaint data to the server
-    alert("Complaint submitted successfully!");
-    // You can redirect to a confirmation page or clear the form here
+// Define the UI component
+export default function page() {
+  // State variables to store form data
+
+  const id = localStorage.getItem("id"); 
+  const [description, setDescription] = useState("");
+  const [wardno, setWardno] = useState("");
+  
+
+  // Function to handle form submission
+  const handleSubmit = async () => {
+    try {
+      // Send POST request to the server with complaint data
+      const response = await fetch("/api/complaint", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          description,
+          wardno,
+          id,
+        }),
+      });
+
+      // Check if the request was successful
+      if (response.ok) {
+        alert("Complaint submitted successfully!");
+        // Clear form fields after successful submission if needed
+        setDescription("");
+        setWardno("");
+      } else {
+        // Display error message if request failed
+        alert("Failed to submit complaint");
+      }
+    } catch (error) {
+      console.error("Error submitting complaint:", error);
+      alert("Failed to submit complaint");
+    }
   };
 
   return (
@@ -51,61 +75,21 @@ export default function page() {
                 </div>
                 <div>
                   <label
-                    htmlFor="location"
+                    htmlFor="description"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Location
+                    Ward no
                   </label>
                   <input
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
+                    value={wardno}
+                    onChange={(e) => setWardno(e.target.value)}
                     type="text"
-                    name="location"
-                    id="location"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Enter location"
+                    name="wardno"
+                    id="wardno"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 h-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Enter ward no"
                     required
                   />
-                </div>
-                <div>
-                  <label
-                    htmlFor="category"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Ward Number
-                  </label>
-                  <input
-                    value={ward}
-                    onChange={(e) => setWard(e.target.value)}
-                    type="text"
-                    name="ward"
-                    id="Ward"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Enter Ward Number"
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="photo"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Photo (optional)
-                  </label>
-                  <input
-                    type="file"
-                    id="photo"
-                    name="photo"
-                    accept="image/*"
-                    onChange={(e) => setPhoto(e.target.files[0])}
-                    className="hidden"
-                  />
-                  <label
-                    htmlFor="photo"
-                    className="w-full cursor-pointer bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 hover:bg-gray-100 dark:hover:bg-gray-600"
-                  >
-                    {photo ? photo.name : "Choose a photo"}
-                  </label>
                 </div>
                 <div className="flex justify-end">
                   <button
