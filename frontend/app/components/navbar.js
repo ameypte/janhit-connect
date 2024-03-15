@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-// import ThemeChanger from "./DarkSwitch";
 import Image from "next/image";
 import logo2 from "../public/img/logo2.png";
 import { Disclosure } from "@headlessui/react";
@@ -13,12 +12,14 @@ const Navbar = () => {
   useEffect(() => {
     const username = localStorage.getItem("username");
     const name = localStorage.getItem("name");
-    if (username == "superadmin@gmail.com") {
-      setUsername(() => name);
-    } else {
-      if (username) {
-        const UpdatedUserName = name.split(" ")[0];
-        setUsername(() => UpdatedUserName);
+    if (username && name) {
+      if (username == "superadmin@gmail.com") {
+        setUsername(() => name);
+      } else {
+        if (username) {
+          const UpdatedUserName = name.split(" ")[0];
+          setUsername(() => UpdatedUserName);
+        }
       }
     }
   }, []);

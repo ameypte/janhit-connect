@@ -3,7 +3,7 @@ import Hero from "./components/hero";
 import Navbar from "./components/navbar";
 import SectionTitle from "./components/sectionTitle";
 
-import { benefitOne, benefitTwo } from "./components/data";
+import { benefitOne } from "./components/data";
 import Video from "./components/video";
 import Benefits from "./components/benefits";
 import Footer from "./components/footer";
@@ -32,15 +32,10 @@ const page = () => {
         Choose JanhitConnect for effortless solutions to all your problems, making community issues a thing of the past. With a user-centric approach, we simplify life for everyone, ensuring a brighter tomorrow for all.
       </SectionTitle>
       <Benefits data={benefitOne} />
-      <Benefits imgPos="right" data={benefitTwo} />
       <SectionTitle
         pretitle="Watch a video"
-        title="Learn how to fullfil your needs"
-      >
-        This section is to highlight a promo or demo video of your product.
-        Analysts says a landing page with video has 3% more conversion rate. So,
-        don&apos;t forget to add one. Just like this.
-      </SectionTitle>
+        title="Learn how to use जनहित Connect "
+      ></SectionTitle>
       <Video />
       {/* <SectionTitle
         pretitle="Testimonials"
