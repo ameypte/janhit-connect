@@ -7,12 +7,14 @@ from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 from langchain.chains import LLMChain
 from  langchain.chains import SimpleSequentialChain
+from flask_cors import CORS
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 
 from complaintClassify import ClassifyComplaint
 app = Flask(__name__) 
+CORS(app)
 genai_api_key = "AIzaSyC897bCsmDp-Yc9fCrZtuj_0Pux_YMop6o"
 
 @app.route('/test', methods=['GET'])
@@ -22,7 +24,7 @@ def test():
 @app.route('/summarize', methods=['POST'])
 def summarize():
     data = request.get_json()
-    text = data['text']
+    text = data['complaint']
     print(text)
     genai.configure(api_key=genai_api_key)
 
@@ -60,7 +62,7 @@ def summarize():
     convo = model.start_chat(history=[
     ])
 
-    prompt = "Sumarize the following complaint in very short just give me sumary only in plain text: " + text
+    prompt = "Sumarize the following complaint in very short just give me sumary only in plain text for the title of complaint: " + text
 
     convo.send_message(prompt)
     summary = convo.last.text
