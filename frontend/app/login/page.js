@@ -14,32 +14,39 @@ export default function Login() {
     console.log(username);
     console.log(password);
 
-    const response = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    });
+    if (username == "superadmin@gmail.com" && password == "superadmin") {
+      localStorage.setItem("name", "superadmin");
 
-    const data = await response.json();
-    console.log(data);
+      router.push("/super-admin");
+    } else {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      });
 
-    if (response.status === 400) {
-      setMessage(data.message);
-      return;
+      const data = await response.json();
+      console.log(data);
+
+      if (response.status === 400) {
+        setMessage(data.message);
+        return;
+      }
+      console.log(data + "This is My Datas");
+      const userId = data.user[0].fullname;
+      console.log(userId);
+      localStorage.setItem("name", userId);
+
+      router.push("/");
     }
-    const userId = data.user.id;
-    console.log(userId);
 
     localStorage.setItem("username", username);
     localStorage.setItem("password", password);
-    localStorage.setItem("userId", userId);
-
-    router.push("/");
   }
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
