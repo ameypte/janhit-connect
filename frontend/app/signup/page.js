@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function signup() {
   const [fullname, setFullname] = useState("");
@@ -12,6 +13,8 @@ export default function signup() {
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [wardNo, setWardNo] = useState("");
+  const router = useRouter();
+
   const handleFullnameChange = (e) => {
     setFullname(e.target.value);
   };
@@ -69,6 +72,7 @@ export default function signup() {
 
     const data = await response.json();
     alert(data.message);
+    router.push("/login");
   }
 
   return (
