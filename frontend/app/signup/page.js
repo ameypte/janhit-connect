@@ -278,7 +278,7 @@ export default function signup() {
                   <input
                     value={city}
                     onChange={handleCityChange}
-                    type="tel"
+                    type="text"
                     pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     name="floating_phone"
                     id="floating_phone"
