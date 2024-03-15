@@ -43,7 +43,7 @@ const date = new Date().toISOString().slice(0, 10);
   try {
     const complaints = await query({
       query:
-        "INSERT INTO complaint (raisedby,complaint,summary,category,tags,wardno,status) VALUES (?,?,?,?,?,?,?,?)",
+        "INSERT INTO complaint (raisedby,complaint,summary,category,tags,wardno,status,date) VALUES (?,?,?,?,?,?,?,?)",
       values: [raisedBy, complaint, summary, category, tags, wardno, status,date],
     });
 
