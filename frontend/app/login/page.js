@@ -17,7 +17,7 @@ export default function Login() {
     if (username == "superadmin@gmail.com" && password == "superadmin") {
       localStorage.setItem("name", "superadmin");
 
-      router.push("/super-admin");
+      router.push("/superadmin");
     } else {
       const response = await fetch("/api/auth/login", {
         method: "POST",
@@ -42,7 +42,7 @@ export default function Login() {
       console.log(userId);
       localStorage.setItem("name", userId);
 
-      router.push("/");
+      router.push("/user");
     }
 
     localStorage.setItem("username", username);

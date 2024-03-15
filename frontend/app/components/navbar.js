@@ -13,12 +13,14 @@ const Navbar = () => {
   useEffect(() => {
     const username = localStorage.getItem("username");
     const name = localStorage.getItem("name");
-    if (username == "superadmin@gmail.com") {
-      setUsername(() => name);
-    } else {
-      if (username) {
-        const UpdatedUserName = name.split(" ")[0];
-        setUsername(() => UpdatedUserName);
+    if (username && name) {
+      if (username == "superadmin@gmail.com") {
+        setUsername(() => name);
+      } else {
+        if (username) {
+          const UpdatedUserName = name.split(" ")[0];
+          setUsername(() => UpdatedUserName);
+        }
       }
     }
   }, []);
