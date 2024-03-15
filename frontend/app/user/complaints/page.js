@@ -1,6 +1,7 @@
 import Navbar from '@/app/components/user/navbar'
 import React from 'react'
 import Link from "next/link"
+import Complaint from '../../components/user/complaint.js'
 
 export default function page() {
     return (
@@ -22,6 +23,7 @@ export default function page() {
                     </div>
                 </div>
             </div>
+            <Complaint/>
         </div>
     )
 }

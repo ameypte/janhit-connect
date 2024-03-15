@@ -1,6 +1,17 @@
 from flask import Flask, request, jsonify
 import google.generativeai as genai
+# import google.generativeai as genai
+import os
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.prompts import PromptTemplate
+from dotenv import load_dotenv
+from langchain.chains import LLMChain
+from  langchain.chains import SimpleSequentialChain
+load_dotenv()
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
+
+from complaintClassify import ClassifyComplaint
 app = Flask(__name__) 
 genai_api_key = "AIzaSyC897bCsmDp-Yc9fCrZtuj_0Pux_YMop6o"
 
@@ -12,7 +23,7 @@ def test():
 def summarize():
     data = request.get_json()
     text = data['text']
-    
+    print(text)
     genai.configure(api_key=genai_api_key)
 
     # Set up the model
@@ -55,6 +66,21 @@ def summarize():
     summary = convo.last.text
     return jsonify({"summary": summary})
 
+@app.route('/classify', methods=['POST'])
+def classify():
+    data = request.get_json()
+    title = data['title']
+    description = data['description']
+    print(title)
+    print(description)
+    classification_result = ClassifyComplaint(title1=title, description1=description)
+    print(classification_result['ministry'].content)
+    # if classification_result and hasattr(classification_result, 'ministry'):
+    #     predicted_ministry = classification_result.ministry.content
+    # else:
+    #     predicted_ministry = "None"
 
+    return jsonify({"ministry": classification_result['ministry'].content})
+    # ClassifyComplaint(title1=title,description1=description)
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
