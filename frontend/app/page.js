@@ -27,11 +27,9 @@ const page = () => {
       <Navbar />
       <Hero />
       <SectionTitle
-        pretitle="Nextly Benefits"
-        title=" Why should you use this landing page">
-        Nextly is a free landing page & marketing website template for startups
-        and indie projects. Its built with Next.js & TailwindCSS. And its
-        completely open-source.
+        pretitle="Benefits"
+        title=" Why should you use जनहित Connect">
+        Choose JanhitConnect for effortless solutions to all your problems, making community issues a thing of the past. With a user-centric approach, we simplify life for everyone, ensuring a brighter tomorrow for all.
       </SectionTitle>
       <Benefits data={benefitOne} />
       <Benefits imgPos="right" data={benefitTwo} />
@@ -43,7 +41,7 @@ const page = () => {
         don&apos;t forget to add one. Just like this.
       </SectionTitle>
       <Video />
-      <SectionTitle
+      {/* <SectionTitle
         pretitle="Testimonials"
         title="Here's what our customers said">
         Testimonails is a great way to increase the brand trust and awareness.
@@ -53,9 +51,9 @@ const page = () => {
       <SectionTitle pretitle="FAQ" title="Frequently Asked Questions">
         Answer your customers possible questions here, it will increase the
         conversion rate as well as support or chat requests.
-      </SectionTitle>
+      </SectionTitle> */}
       <Faq />
-      <Cta />
+      {/* <Cta /> */}
       <Footer />
       <PopupWidget />   
     </>
