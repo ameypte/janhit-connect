@@ -36,12 +36,15 @@ export const POST = async (req, res) => {
   const tags = "tags";
   const wardno = data.wardno;
   const status = "pending";
-  console.log(raisedBy, complaint, summary, category, tags, wardno, status);
+  
+const date = new Date().toISOString().slice(0, 10);
+  
+  console.log(raisedBy, complaint, summary, category, tags, wardno, status, date);
   try {
     const complaints = await query({
       query:
-        "INSERT INTO complaint (raisedby,complaint,summary,category,tags,wardno,status) VALUES (?,?,?,?,?,?,?)",
-      values: [raisedBy, complaint, summary, category, tags, wardno, status],
+        "INSERT INTO complaint (raisedby,complaint,summary,category,tags,wardno,status) VALUES (?,?,?,?,?,?,?,?)",
+      values: [raisedBy, complaint, summary, category, tags, wardno, status,date],
     });
 
     if (complaints) {
