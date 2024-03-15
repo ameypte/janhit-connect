@@ -34,8 +34,7 @@ model = genai.GenerativeModel(model_name="gemini-1.0-pro",
                               generation_config=generation_config,
                               safety_settings=safety_settings)
 
-convo = model.start_chat(history=[
-])
+convo = model.start_chat(history=[])
 
 convo.send_message("Sumarize the following complaint in very short just give me sumary only in plain text: Failure to address these concerns within the next 3 business days will leave me with no choice but to explore other waste management service providers and seek compensation for the inconvenience and expenses incurred. I urge you to take this complaint seriously and take immediate steps to improve the service in Chintamani Nagar, Pune. Thank you for your attention to this matter.")
 print(convo.last.text)

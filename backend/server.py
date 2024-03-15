@@ -8,10 +8,6 @@ genai_api_key = "AIzaSyC897bCsmDp-Yc9fCrZtuj_0Pux_YMop6o"
 def test():
     return "Hello, World!"
 
-# @app.route('/<name>', methods=['GET'])
-# def name(name):
-#     return f"Hello, {name}!"
-
 @app.route('/summarize', methods=['POST'])
 def summarize():
     data = request.get_json()
@@ -62,6 +58,3 @@ def summarize():
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
-
-
-
