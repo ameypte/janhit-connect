@@ -1,25 +1,16 @@
-"use client";
+  "use client";
 
 import Link from "next/link";
 import Image from "next/image";
-import logo2 from "../public/img/logo2.png";
+import logo2 from "../../public/img/logo2.png";
 import { Disclosure } from "@headlessui/react";
 import { useEffect, useState } from "react";
 const Navbar = () => {
   const [username, setUsername] = useState();
-  console.log(username);
-  const navigation = ["Home", "Complaints", "Water", "Electricity", "About Us"];
+
+  const navigation = ["Home", "Complaints", "Your Nagar Sevak", "Water", "Power"];
   useEffect(() => {
-    const username = localStorage.getItem("username");
-    const name = localStorage.getItem("name");
-    if (username == "superadmin@gmail.com") {
-      setUsername(() => name);
-    } else {
-      if (username) {
-        const UpdatedUserName = name.split(" ")[0];
-        setUsername(() => UpdatedUserName);
-      }
-    }
+    setUsername(localStorage.getItem("username"));
   }, []);
   return (
     <div className="w-full">
@@ -79,6 +70,32 @@ const Navbar = () => {
                         {item}
                       </Link>
                     ))}
+                    {username ? (
+                      <div className="flex items-center space-x-4">
+                        <p className="text-gray-900 dark:text-white">
+                          Welcome {username}!
+                        </p>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            localStorage.removeItem("username");
+                            window.location.reload();
+                          }}
+                          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                          Logout
+                        </button>
+                      </div>
+                    ) : (
+                      <Link href="/login">
+                        <button
+                          type="button"
+                          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                          Login/Register
+                        </button>
+                      </Link>
+                    )}
                   </>
                 </Disclosure.Panel>
               </div>
@@ -103,32 +120,12 @@ const Navbar = () => {
         </div>
 
         <div className="hidden mr-3 space-x-4 lg:flex nav__item">
-          {username ? (
-            <div className="flex items-center space-x-4">
-              <p className="text-gray-900 dark:text-white">
-                Welcome {username}!
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  localStorage.removeItem("username");
-                  window.location.reload();
-                }}
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-              >
-                Logout
-              </button>
-            </div>
-          ) : (
-            <Link href="/login">
-              <button
-                type="button"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-              >
-                Login/Register
-              </button>
-            </Link>
-          )}
+          <Link
+            href="/signup"
+            className="px-6 py-2 text-white bg-indigo-600 rounded-md md:ml-5"
+          >
+            Get Started
+          </Link>
         </div>
       </nav>
     </div>

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function signup() {
   const [fullname, setFullname] = useState("");
@@ -12,6 +13,8 @@ export default function signup() {
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
   const [wardNo, setWardNo] = useState("");
+  const router = useRouter();
+
   const handleFullnameChange = (e) => {
     setFullname(e.target.value);
   };
@@ -69,6 +72,7 @@ export default function signup() {
 
     const data = await response.json();
     alert(data.message);
+    router.push("/login");
   }
 
   return (
@@ -278,8 +282,7 @@ export default function signup() {
                   <input
                     value={city}
                     onChange={handleCityChange}
-                    type="tel"
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    type="text"
                     name="floating_phone"
                     id="floating_phone"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
