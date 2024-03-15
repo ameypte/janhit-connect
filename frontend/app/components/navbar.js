@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import ThemeChanger from "./DarkSwitch";
 import Image from "next/image";
 import logo2 from "../public/img/logo2.png";
 import { Disclosure } from "@headlessui/react";

@@ -1,5 +1,5 @@
-"use client"
-
+"use client";
+import logo2 from "../public/img/logo2.png";
 import {
   FaceSmileIcon,
   ChartBarSquareIcon,
@@ -7,30 +7,35 @@ import {
   DevicePhoneMobileIcon,
   AdjustmentsHorizontalIcon,
   SunIcon,
+  DocumentIcon,
+  BanknotesIcon,
+  EyeDropperIcon,
+  BookmarkIcon,
+  CogIcon,
 } from "@heroicons/react/24/solid";
 
-import benefitOneImg from "../public/img/benefit-one.png";
+import sarkar from "../public/img/Banner.jpg";
 import benefitTwoImg from "../public/img/benefit-two.png";
 
 const benefitOne = {
-  title: "Highlight your benefits",
-  desc: "You can use this space to highlight your first benefit or a feature of your product. It can also contain an image or Illustration like in the example along with some bullet points.",
-  image: benefitOneImg,
+  title: "Services provided",
+  desc: "जनहित connects as the name suggest provides a platform to connect the peoples problem with the responsible department. It is a platform where you can register your complaint and a quick action will be taken by the responsible department.",
+  image: sarkar,
   bullets: [
     {
-      title: "Understand your customers",
-      desc: "Then explain the first point breifly in one or two lines.",
-      icon: <FaceSmileIcon />,
+      title: "Complaint Box",
+      desc: "where you can register your complaint and get a quick action.",
+      icon: <CogIcon />,
     },
     {
-      title: "Improve acquisition",
-      desc: "Here you can add the next benefit point.",
-      icon: <ChartBarSquareIcon />,
+      title: "Water dispersion",
+      desc: "At which time water will be dispersed in your area.",
+      icon: <CogIcon />,
     },
     {
-      title: "Drive customer retention",
-      desc: "This will be your last bullet point in this section.",
-      icon: <CursorArrowRaysIcon />,
+      title: "Electricity cutoffs",
+      desc: "At which time electricity will be cut off in your area.",
+      icon: <CogIcon />,
     },
   ],
 };
@@ -58,5 +63,4 @@ const benefitTwo = {
   ],
 };
 
-
-export {benefitOne, benefitTwo};
+export { benefitOne, benefitTwo };
