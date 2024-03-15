@@ -2,16 +2,16 @@
 // Import necessary modules
 import React, { useState } from "react";
 import NavBar from "../../components/navbar";
-
+import { useRouter } from "next/navigation";
 
 // Define the UI component
 export default function page() {
   // State variables to store form data
-
-  const id = localStorage.getItem("id"); 
+  const router = useRouter();
+  // localStorage
+  const id = localStorage.getItem("id");
   const [description, setDescription] = useState("");
   const [wardno, setWardno] = useState("");
-  
 
   // Function to handle form submission
   const handleSubmit = async () => {
@@ -35,6 +35,7 @@ export default function page() {
         // Clear form fields after successful submission if needed
         setDescription("");
         setWardno("");
+        router.push("/");
       } else {
         // Display error message if request failed
         alert("Failed to submit complaint");
