@@ -1,17 +1,15 @@
 from flask import Flask, request, jsonify
 import google.generativeai as genai
-# import google.generativeai as genai
 import os
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
-from langchain.chains import LLMChain
-from  langchain.chains import SimpleSequentialChain
 from flask_cors import CORS
+
 load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
+# custom functions
 from complaintClassify import ClassifyComplaint
+from water_prediction import predictWater
 
 
 app = Flask(__name__) 
@@ -71,21 +69,46 @@ def summarize():
 
 @app.route('/classify', methods=['POST'])
 def classify():
-    data = request.get_json()
-    title = data['title']
-    description = data['description']
-    print(title)
-    print(description)
-    classification_result = ClassifyComplaint(title1=title, description1=description)
-    print(classification_result['ministry'].content)
-    # if classification_result and hasattr(classification_result, 'ministry'):
-    #     predicted_ministry = classification_result.ministry.content
-    # else:
-    #     predicted_ministry = "None"
+    try:
+        data = request.get_json()
+        title = data['title']
+        description = data['description']
+        print(title)
+        print(description)
+        classification_result = ClassifyComplaint(title1=title, description1=description)
+        print(classification_result['ministry'].content)
+        # if classification_result and hasattr(classification_result, 'ministry'):
+        #     predicted_ministry = classification_result.ministry.content
+        # else:
+        #     predicted_ministry = "None"
 
-    return jsonify({"ministry": classification_result['ministry'].content})
-    # ClassifyComplaint(title1=title,description1=description)
+        return jsonify({"ministry": classification_result['ministry'].content})
+    
+    except Exception as e:
+        print(e)
+        return jsonify({"ministry": "None"})
+    
+        # ClassifyComplaint(title1=title,description1=description)
 
+@app.route('/predict-water', methods=['POST'])
+def predict_water():
+    try:
+        data = request.get_json()
+        total_people = data['total_people']
+        season = data['season']
+        isConstruction = data['isConstruction']
+
+        print(total_people) # 856
+        print(season) # Summer
+        print(isConstruction)  # True/False
+
+        predicted_water = predictWater(people_in_ward=total_people, season=season, construction=isConstruction)
+
+        return jsonify({"predicted_water": predicted_water})
+    
+    except Exception as e:
+        print(e)
+        return jsonify({"predicted_water": "None"})
 
 
 if __name__ == '__main__':
