@@ -28,3 +28,5 @@ CREATE TABLE complaint (
     status TEXT
 );
 
+ALTER TABLE complaint
+ADD COLUMN DATE TEXT;

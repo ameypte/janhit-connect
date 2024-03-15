@@ -12,14 +12,7 @@ const Navbar = () => {
   const [username, setUsername] = useState();
 
   // constaints name and link
-  const navigation = 
-  [
-    "Home",
-    "Complaints",
-    "Services",
-    "About Us",
-    "Contact Us",
-  ];
+  const navigation = ["Home", "Complaints", "Water", "Power"];
 
   useEffect(() => {
     setUsername(localStorage.getItem("name").split(" ")[0]);
@@ -76,7 +69,11 @@ const Navbar = () => {
                     {navigation.map((item, index) => (
                       <Link
                         key={index}
-                        href = {item === "Home" ? "/user" : `/user/${item.toLowerCase().replace(" ", "-")}`}
+                        href={
+                          item === "Home"
+                            ? "/user"
+                            : `/user/${item.toLowerCase().replace(" ", "-")}`
+                        }
                         className="w-full px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none"
                       >
                         {item.name}
@@ -94,7 +91,11 @@ const Navbar = () => {
             {navigation.map((menu, index) => (
               <li className="mr-3 nav__item" key={index}>
                 <Link
-                  href = {menu === "Home" ? "/user" : `/user/${menu.toLowerCase().replace(" ", "-")}`}
+                  href={
+                    menu === "Home"
+                      ? "/user"
+                      : `/user/${menu.toLowerCase().replace(" ", "-")}`
+                  }
                   className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
                 >
                   {menu}
@@ -105,21 +106,19 @@ const Navbar = () => {
         </div>
 
         <div className="hidden mr-3 space-x-4 lg:flex nav__item">
-            <div className="flex items-center space-x-4">
-              <p className="text-gray-900 dark:text-white">
-                Welcome {username}!
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  localStorage.removeItem("name");
-                  router.push("/");
-                }}
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-              >
-                Logout
-              </button>
-            </div>
+          <div className="flex items-center space-x-4">
+            <p className="text-gray-900 dark:text-white">Welcome {username}!</p>
+            <button
+              type="button"
+              onClick={() => {
+                localStorage.removeItem("name");
+                router.push("/");
+              }}
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            >
+              Logout
+            </button>
+          </div>
         </div>
       </nav>
     </div>
