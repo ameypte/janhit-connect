@@ -12,3 +12,16 @@ CREATE TABLE user (
 
 ALTER TABLE `user`
 ADD COLUMN role VARCHAR(50);
+
+
+CREATE TABLE complaint (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    raisedby INT,
+    FOREIGN KEY (raisedby) REFERENCES user(id),
+    complaint TEXT,
+    summary TEXT,
+    category TEXT,
+    tags TEXT,
+    wardno INT,
+    status TEXT
+);
