@@ -4,25 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import logo2 from "../public/img/logo2.png";
 import { Disclosure } from "@headlessui/react";
-import { useEffect, useState } from "react";
 const Navbar = () => {
-  const [username, setUsername] = useState();
-  console.log(username);
   const navigation = ["Home", "Complaints", "Water", "Electricity", "About Us"];
-  useEffect(() => {
-    const username = localStorage.getItem("username");
-    const name = localStorage.getItem("name");
-    if (username && name) {
-      if (username == "superadmin@gmail.com") {
-        setUsername(() => name);
-      } else {
-        if (username) {
-          const UpdatedUserName = name.split(" ")[0];
-          setUsername(() => UpdatedUserName);
-        }
-      }
-    }
-  }, []);
+  
   return (
     <div className="w-full">
       <nav className="container relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0">
@@ -75,7 +59,7 @@ const Navbar = () => {
                     {navigation.map((item, index) => (
                       <Link
                         key={index}
-                        href="/"
+                        href="/login"
                         className="w-full px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none"
                       >
                         {item}
@@ -94,7 +78,7 @@ const Navbar = () => {
             {navigation.map((menu, index) => (
               <li className="mr-3 nav__item" key={index}>
                 <Link
-                  href="/"
+                  href="/login"
                   className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
                 >
                   {menu}
@@ -105,23 +89,6 @@ const Navbar = () => {
         </div>
 
         <div className="hidden mr-3 space-x-4 lg:flex nav__item">
-          {username ? (
-            <div className="flex items-center space-x-4">
-              <p className="text-gray-900 dark:text-white">
-                Welcome {username}!
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  localStorage.removeItem("username");
-                  window.location.reload();
-                }}
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-              >
-                Logout
-              </button>
-            </div>
-          ) : (
             <Link href="/login">
               <button
                 type="button"
@@ -130,7 +97,6 @@ const Navbar = () => {
                 Login/Register
               </button>
             </Link>
-          )}
         </div>
       </nav>
     </div>

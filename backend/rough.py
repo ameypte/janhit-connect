@@ -10,7 +10,6 @@ generation_config = {
   "max_output_tokens": 50,  # Limit output to a single line (~50 words)
 }
 
-
 safety_settings = [
   {
     "category": "HARM_CATEGORY_HARASSMENT",

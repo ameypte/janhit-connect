@@ -9,18 +9,19 @@ const Navbar = () => {
   const [username, setUsername] = useState();
 
   const navigation = ["Home", "Complaints", "Nagar Sevak", "Water", "Power"];
+
   useEffect(() => {
     setUsername(localStorage.getItem("username"));
   }, []);
   return (
-    <div className="w-full">
-      <nav className="container relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0">
+    <div>
+      <nav className="container relative flex flex-wrap items-center justify-between p-5 mx-auto lg:justify-between ">
         {/* Logo  */}
         <Disclosure>
           {({ open }) => (
             <>
               <div className="flex flex-wrap items-center justify-between w-full lg:w-auto">
-                <Link href="/">
+                <Link href="/superadmin">
                   <span className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
                     <span>
                       <Image
@@ -64,38 +65,29 @@ const Navbar = () => {
                     {navigation.map((item, index) => (
                       <Link
                         key={index}
-                        href="/"
+                        href={item === "Home" ? "/superadmin" : `/superadmin/${item.toLowerCase().replace(" ", "-")}`}
                         className="w-full px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none"
                       >
                         {item}
                       </Link>
                     ))}
-                    {username ? (
-                      <div className="flex items-center space-x-4">
-                        <p className="text-gray-900 dark:text-white">
-                          Welcome {username}!
-                        </p>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            localStorage.removeItem("username");
-                            window.location.reload();
-                          }}
-                          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                        >
-                          Logout
-                        </button>
-                      </div>
-                    ) : (
-                      <Link href="/login">
-                        <button
-                          type="button"
-                          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                        >
-                          Login/Register
-                        </button>
-                      </Link>
-                    )}
+
+                    <div className="flex items-center space-x-4">
+                      <p className="text-gray-900 dark:text-white">
+                        Welcome {username}!
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          localStorage.removeItem("username");
+                          window.location.reload();
+                        }}
+                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                      >
+                        Logout
+                      </button>
+                    </div>
+
                   </>
                 </Disclosure.Panel>
               </div>
@@ -109,7 +101,8 @@ const Navbar = () => {
             {navigation.map((menu, index) => (
               <li className="mr-3 nav__item" key={index}>
                 <Link
-                  href="/"
+                  href={menu === "Home" ? "/superadmin" : `/superadmin/${menu.toLowerCase().replace(" ", "-")}`}
+
                   className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
                 >
                   {menu}
