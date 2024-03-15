@@ -12,7 +12,13 @@ const Navbar = () => {
   const [username, setUsername] = useState();
 
   // constaints name and link
-  const navigation = ["Home", "Complaints", "Water", "Power"];
+  const navigation = [
+    "Home",
+    "Complaints",
+    "Services",
+    "About Us",
+    "Contact Us",
+  ];
 
   useEffect(() => {
     setUsername(localStorage.getItem("name").split(" ")[0]);
@@ -91,14 +97,11 @@ const Navbar = () => {
             {navigation.map((menu, index) => (
               <li className="mr-3 nav__item" key={index}>
                 <Link
-<<<<<<< HEAD
                   href={
                     menu === "Home"
                       ? "/user"
                       : `/user/${menu.toLowerCase().replace(" ", "-")}`
                   }
-=======
-                  href = {menu === "Home" ? "/user" : `/user/${menu.toLowerCase().replace(" ", "-")}`}
                   onClick={() => {
                     // check if the user is logged in else just redirect to login page
                     if (menu === "Complaints" || menu === "Services") {
@@ -107,7 +110,6 @@ const Navbar = () => {
                       }
                     }
                   }}
->>>>>>> cc93dbc80807b24bba6b4890a29c66883dbc6ce3
                   className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800"
                 >
                   {menu}
