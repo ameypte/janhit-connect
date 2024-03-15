@@ -9,9 +9,11 @@ CREATE TABLE user (
     ward_no VARCHAR(50)
 );
 
-
 ALTER TABLE `user`
 ADD COLUMN role VARCHAR(50);
+
+ALTER TABLE user
+ADD COLUMN address VARCHAR(255) AFTER city;
 
 
 CREATE TABLE complaint (
@@ -25,3 +27,4 @@ CREATE TABLE complaint (
     wardno INT,
     status TEXT
 );
+

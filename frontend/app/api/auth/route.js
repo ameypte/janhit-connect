@@ -12,12 +12,28 @@ export const POST = async (req, res) => {
   const state = data.state;
   const city = data.city;
   const wardNo = data.wardNo;
-  console.log(fullname, email, password, phoneNo, state, city, wardNo);
-  const user = await query({
-    query:
-      "INSERT INTO `user`(`fullname`, `email`, `pass`, `phone`, `state`, `city`, `ward_no`) VALUES (?, ?, ?, ?, ?, ?, ?)",
-    values: [fullname, email, password, phoneNo, state, city, wardNo],
-  });
+  const role = data.role;
+
+  const address = data.address;
+
+  console.log(fullname, email, password, phoneNo, state, city, wardNo, role, address);
+  // address can be undefined
+ let user;
+
+  if (address == undefined) {
+    user = await query({
+      query:
+        "INSERT INTO `user`(`fullname`, `email`, `pass`, `phone`, `state`, `city`, `ward_no`, `role`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+      values: [fullname, email, password, phoneNo, state, city, wardNo, role],
+    });
+  }
+  else {
+    user = await query({
+      query:
+        "INSERT INTO `user`(`fullname`, `email`, `pass`, `phone`, `state`, `city`, `ward_no`, `role`, `address`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      values: [fullname, email, password, phoneNo, state, city, wardNo, role, address],
+    });
+  }
 
   if (user.error) {
     message = "Something went Wrong";
