@@ -105,6 +105,7 @@ def predict_water():
 
         predicted_water = predictWater(people_in_ward=total_people, season=season, construction=isConstruction)
 
+        predicted_water = round(predicted_water, 2)
         return jsonify({"predicted_water": predicted_water})
     
     except Exception as e:
@@ -130,7 +131,6 @@ def predict_power():
     except Exception as e:
         print(e)
         return jsonify({"predicted_power": "None"})
-
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
