@@ -8,10 +8,14 @@ export default function PredictWater() {
   const [season, setSeason] = useState("No Season Selected");
   const [isConstructionGoingOn, setIsConstructionGoingOn] = useState(false);
   const [wardNO, setWardNo] = useState(0);
+  const [predictedWater, setPredictedWater] = useState(0);
+
   const handleSeason = (season) => {
     setSeason(season);
     setHide((prev) => !prev);
   };
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,10 +29,30 @@ export default function PredictWater() {
       return;
     }
     console.log(noOfPeople, season, isConstructionGoingOn, wardNO);
-    setSeason(() => "No Season Selected");
-    setNoOfPeople(() => 0);
-    setIsConstructionGoingOn(() => false);
-    setWardNo(() => 0);
+
+    // call the api to predict the water
+    fetch("http://localhost:5000/predict-water", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        total_people: noOfPeople,
+        season,
+        isConstruction: isConstructionGoingOn,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // alert(`Predicted Water: ${data.predicted_water}`);
+        setPredictedWater(data.predicted_water);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Error in predicting water");
+      }
+      );
   };
 
   return (
@@ -108,7 +132,16 @@ export default function PredictWater() {
               </label>
             </div>
           </div>
-          <div className="flex justify-end items-end">
+          <div className="flex justify-between items-center">
+            <div className="">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Avabliable Water: 8654279 Litres
+              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Predicted Water Uses: {predictedWater} Litres in next week
+              </p>
+
+            </div>
             <button
               type="submit"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
