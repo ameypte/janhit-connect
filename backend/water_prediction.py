@@ -3,7 +3,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 # Load numerical data into a DataFrame
 data = pd.read_csv('dataset_water.csv')
-
+def predictWater(people_in_ward,season,construction):
     # Select only specific columns as features
     selected_features = ['People in Ward', 'Season', 'Construction']  # List of column names you want to include
     X = data[selected_features]

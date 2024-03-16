@@ -10,6 +10,7 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 # custom functions
 from complaintClassify import ClassifyComplaint
 from water_prediction import predictWater
+from electricty_prediction import predictPower
 
 
 app = Flask(__name__) 
@@ -109,6 +110,26 @@ def predict_water():
     except Exception as e:
         print(e)
         return jsonify({"predicted_water": "None"})
+    
+@app.route('/predict-power', methods=['POST'])
+def predict_power():
+    try:
+        data = request.get_json()
+        total_people = data['total_people']
+        season = data['festive_season']
+        isConstruction = data['isConstruction']
+
+        print(total_people) # 856
+        print(season) # Summer
+        print(isConstruction)  # True/False
+
+        predicted_power = predictPower(people_in_ward=total_people, season=season, construction=isConstruction)
+
+        return jsonify({"predicted_power": predicted_power})
+    
+    except Exception as e:
+        print(e)
+        return jsonify({"predicted_power": "None"})
 
 
 if __name__ == '__main__':
