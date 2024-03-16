@@ -33,7 +33,7 @@ export default function PredictWater() {
 
   return (
     <section className="container max-w-xl mx-auto p-13">
-      <div className="border border-gray-200 rounded-lg shadow-lg p-14 h-72 w-auto">
+      <div className="border border-gray-200 rounded-lg shadow-lg p-14 h-auto w-auto">
         <form className="mx-auto" onSubmit={handleSubmit}>
           <div className="grid md:grid-cols-2 md:gap-6">
             <div className="m-8 relative z-0 w-full mb-5 group">
