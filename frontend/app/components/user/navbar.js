@@ -15,8 +15,8 @@ const Navbar = () => {
   const navigation = [
     "Home",
     "Complaints",
-    "Services",
-    "About Us",
+    "Electricity",
+    "Water",
     "Contact Us",
   ];
 
